@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                q1container = document.getElementById('q1')
+                q2container = document.getElementById('q2')
+                const p = document.createElement('p') // answer paragraph
+
+                document.querySelectorAll('.wrong').forEach(button => {
+                    button.addEventListener('click', event => {
+                        event.target.style.backgroundColor = 'red'
+
+                        p.textContent = 'Incorrect'
+                        q1container.appendChild(p)
+                        setTimeout(() => {
+                            event.target.style.backgroundColor = '#d9edff'
+                            p.remove()
+                        }, 1000)
+                    })
+                })
+                document.querySelectorAll('.correct').forEach(button => {
+                    button.addEventListener('click', event => {
+                        button.addEventListener('click', event => {
+                            event.target.style.backgroundColor = 'green'
+
+                            p.textContent = 'Correct!'
+                            q1container.appendChild(p)
+                            setTimeout(() => {
+                                event.target.style.backgroundColor = '#d9edff'
+                                p.remove()
+                            }, 1000)
+                        })
+                    })
+                })
+
+                const q2btn = document.getElementById('btn-check')
+                const q2field = document.getElementById('input')
+                q2btn.addEventListener('click', (event) => {
+                    answer = q2field.value
+
+                    if (answer === 'Algeria' || answer === 'algeria') {
+                        q2field.style.backgroundColor = 'green'
+
+                        p.textContent = 'Correct!'
+                        q2container.appendChild(p)
+
+                        setTimeout(() => {
+                                q2field.style.backgroundColor = '#d9edff'
+                                p.remove()
+                            }, 1000)
+                    } else {
+                        q2field.style.backgroundColor = 'red'
+
+                        p.textContent = 'Incorrect'
+                        q2container.appendChild(p)
+
+                        setTimeout(() => {
+                                q2field.style.backgroundColor = '#d9edff'
+                                p.remove()
+                            }, 1000)
+                    }
+                })
+
+            })
+        </script>
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section" id="q1">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>What city is the capital of Uganda?</h3>
+                <button class="correct">Kampala</button>
+                <button class="wrong">Kigali</button>
+                <button class="wrong">New Delhi</button>
+                <button class="wrong">Washington D.C.</button>
+            </div>
+
+            <div class="section" id="q2">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>What is the name of the biggest country in Africa?</h3>
+                <input id='input' type='text' placeholder="China" required>
+                <button id='btn-check' >Guess</button>
+            </div>
+        </div>
+    </body>
+
+</html>
