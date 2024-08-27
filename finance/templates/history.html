@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+History
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Stock</td>
+                <td>Amount</td>
+                <td>Price</td>
+                <td>Time</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction["symbol"] }}</td>
+                    <td>
+                        {% if transaction["amount"] > 0 %}
+                        Bought {{ transaction["amount"] }}
+                        {% else %}
+                        Sold {{ -transaction["amount"] }}
+                        {% endif %}
+                    </td>
+                    <td>{{ transaction["price"] }}</td>
+                    <td>{{ transaction["timestamp"] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

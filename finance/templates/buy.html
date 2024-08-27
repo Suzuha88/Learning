@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Buy Stock
+{% endblock %}
+
+{% block main %}
+    <form action="/buy" method="post">
+        <input type="text" name="symbol" autofocus required placeholder="Stock's Symbol">
+        <input id="number" type="number" min="1" step="1" name="shares" required placeholder="Number of Shares">
+        <button type="submit">Buy</button>
+    </form>
+{% endblock %}
+
+{% block script %}
+<script>
+    const number_input = document.getElementById("number")
+    let str = ''
+    number_input.addEventListener("input", (event) => {
+        if (!event.target.value)
+        {
+            event.target.value = str
+        }
+        else
+        {
+            str = event.target.value
+        }
+    })
+</script>
+{% endblock %}
